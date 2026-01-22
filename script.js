@@ -23,7 +23,40 @@ function sendMsg() {
   chat.innerHTML += "<div style='color:#22c55e; margin:8px 0;'>Bot: " + botReply + "</div>";
 
   document.getElementById("msg").value = "";
-  chat.scrollTop = chat.scrollHeight;
-}
+  chat.scrollTop = chat.scrollHeight;}
+
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+  }
+
+  function calculateBMI() {
+    let w = document.getElementById("weight").value;
+    let h = document.getElementById("height").value / 100;
+    let bmi = (w / (h * h)).toFixed(1);
+
+    let msg = "";
+    if (bmi < 18.5) msg = "Underweight";
+    else if (bmi < 25) msg = "Normal";
+    else if (bmi < 30) msg = "Overweight";
+    else msg = "Obese";
+
+    document.getElementById("bmiResult").innerText =
+      "Your BMI is " + bmi + " (" + msg + ")";
+  }
+
+  function generateWorkout() {
+    let workouts = [
+      "20 Pushups",
+      "30 Squats",
+      "15 Burpees",
+      "1 Minute Plank",
+      "25 Jumping Jacks"
+    ];
+
+    let r = Math.floor(Math.random() * workouts.length);
+    document.getElementById("workout").innerText = workouts[r];
+  }
+
+  
 </script>
 
