@@ -100,6 +100,8 @@ footer { text-align: center; padding: 20px; background: #020617; color: #94a3b8;
   <button onclick="sendMsg()" style="width:100%; padding:10px; margin-top:10px; border:none; border-radius:10px; background:#22c55e; font-weight:bold;">Send</button>
 </div>
 
+
+// ===== FITPULSE CHATBOT START =====
 <script>
 function sendMsg() {
   let msg = document.getElementById("msg").value.toLowerCase();
@@ -128,3 +130,94 @@ function sendMsg() {
   chat.scrollTop = chat.scrollHeight;
 }
 </script>
+
+//Fitpulse BMI Button
+<!DOCTYPE html>
+<html>
+<head>
+  <title>FitPulse</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      background: white;
+      color: black;
+    }
+
+    body.dark {
+      background: #121212;
+      color: white;
+    }
+
+    button {
+      padding: 10px;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+
+    input {
+      padding: 8px;
+      margin: 5px 0;
+      width: 200px;
+    }
+  </style>
+</head>
+
+<body>
+
+<h1>FitPulse Fitness Website</h1>
+
+<button onclick="toggleDarkMode()">🌙 Toggle Dark Mode</button>
+
+<hr>
+
+<h2>BMI Calculator</h2>
+<input type="number" id="weight" placeholder="Weight (kg)">
+<br>
+<input type="number" id="height" placeholder="Height (cm)">
+<br>
+<button onclick="calculateBMI()">Calculate BMI</button>
+<p id="bmiResult"></p>
+
+<hr>
+
+<h2>Workout Generator</h2>
+<button onclick="generateWorkout()">Generate Workout</button>
+<p id="workout"></p>
+
+<script>
+  function toggleDarkMode() {
+    document.body.classList.toggle("dark");
+  }
+
+  function calculateBMI() {
+    let w = document.getElementById("weight").value;
+    let h = document.getElementById("height").value / 100;
+    let bmi = (w / (h * h)).toFixed(1);
+
+    let msg = "";
+    if (bmi < 18.5) msg = "Underweight";
+    else if (bmi < 25) msg = "Normal";
+    else if (bmi < 30) msg = "Overweight";
+    else msg = "Obese";
+
+    document.getElementById("bmiResult").innerText =
+      "Your BMI is " + bmi + " (" + msg + ")";
+  }
+
+  function generateWorkout() {
+    let workouts = [
+      "20 Pushups",
+      "30 Squats",
+      "15 Burpees",
+      "1 Minute Plank",
+      "25 Jumping Jacks"
+    ];
+
+    let r = Math.floor(Math.random() * workouts.length);
+    document.getElementById("workout").innerText = workouts[r];
+  }
+</script>
+
+</body>
+</html>
